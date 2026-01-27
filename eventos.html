@@ -2,32 +2,28 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Gerenciar Atividades - Portal de Eventos</title>
+  <title>Gerenciar Eventos - Portal de Eventos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <h1>Gerenciamento de Atividades</h1>
+    <h1>Gerenciamento de Eventos</h1>
     <p>Administração do Portal</p>
   </header>
 
   <main class="container">
     <section>
       <a href="dashbordAdministrativo.html" class="btn">Voltar ao Dashboard</a>
-      <h2>Listagem de Atividades</h2>
-      <button class="btn btn-success" onclick="toggleForm()">Nova Atividade</button>
+      <h2>Listagem de Eventos</h2>
+      <button class="btn btn-success" onclick="toggleForm()">Novo Evento</button>
 
-      <div id="form-atividade" style="display:none; margin-top: 20px; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
-        <h3>Cadastrar / Editar Atividade</h3>
-        <input type="text" placeholder="Nome da Atividade" style="width:100%; padding:10px; margin-bottom:10px;">
-        <select style="width:100%; padding:10px; margin-bottom:10px;">
-          <option>Selecione o Evento</option>
-          <option>Tech Week 2026</option>
-          <option>Encontro Literário</option>
-        </select>
-        <input type="text" placeholder="Palestrante/Responsável" style="width:100%; padding:10px; margin-bottom:10px;">
+      <div id="form-evento" style="display:none; margin-top: 20px; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
+        <h3>Cadastrar / Editar Evento</h3>
+        <input type="text" placeholder="Nome do Evento" style="width:100%; padding:10px; margin-bottom:10px;">
+        <input type="date" style="width:100%; padding:10px; margin-bottom:10px;">
+        <input type="text" placeholder="Local" style="width:100%; padding:10px; margin-bottom:10px;">
         <button class="btn btn-success">Salvar</button>
         <button class="btn" onclick="toggleForm()">Cancelar</button>
       </div>
@@ -35,26 +31,29 @@
       <table>
         <thead>
           <tr>
-            <th>Atividade</th>
-            <th>Evento</th>
-            <th>Responsável</th>
+            <th>Nome</th>
+            <th>Data</th>
+            <th>Local</th>
+            <th>Situação</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Workshop de React</td>
             <td>Tech Week 2026</td>
-            <td>João Silva</td>
+            <td>20/03/2026</td>
+            <td>Palmas</td>
+            <td>Ativo</td>
             <td>
               <button class="btn" style="padding: 5px 10px;">Editar</button>
               <button class="btn btn-danger" style="padding: 5px 10px;">Excluir</button>
             </td>
           </tr>
           <tr>
-            <td>Palestra: IA no Futuro</td>
-            <td>Tech Week 2026</td>
-            <td>Maria Oliveira</td>
+            <td>Encontro Literário</td>
+            <td>05/02/2026</td>
+            <td>Biblioteca</td>
+            <td>Ativo</td>
             <td>
               <button class="btn" style="padding: 5px 10px;">Editar</button>
               <button class="btn btn-danger" style="padding: 5px 10px;">Excluir</button>
@@ -71,7 +70,7 @@
 
   <script>
     function toggleForm() {
-      const form = document.getElementById('form-atividade');
+      const form = document.getElementById('form-evento');
       form.style.display = form.style.display === 'none' ? 'block' : 'none';
     }
   </script>

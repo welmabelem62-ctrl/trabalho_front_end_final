@@ -1,31 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard</title>
+  <title>Dashboard Administrativo - Portal de Eventos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Dashboard Administrativo</h1>
-  <p>Olá, Ana Souza</p>
-</header>
+  <header>
+    <h1>Dashboard Administrativo</h1>
+    <p>Bem-vindo(a), Welma Carvalho Belem</p>
+  </header>
 
-<div class="container">
-  <div class="menu">
-    <a href="eventos.html">Gerenciar Eventos</a>
-    <a href="atividades.html">Gerenciar Atividades</a>
-    <a href="participantes.html">Relatório de Participantes</a>
-    <a href="home.html">Sair</a>
-  </div>
+  <main class="container">
+    <nav class="menu">
+      <ul>
+        <li><a href="eventos.html" class="btn">Gerenciar Eventos</a></li>
+        <li><a href="atividades.html" class="btn">Gerenciar Atividades</a></li>
+        <li><a href="participantes.html" class="btn">Relatório de Participantes</a></li>
+        <li><a href="home.html" class="btn btn-danger">Sair</a></li>
+      </ul>
+    </nav>
 
-  <div class="card">
-    <p>Eventos cadastrados: <strong>3</strong></p>
-    <p>Atividades cadastradas: <strong>8</strong></p>
-    <p>Participantes inscritos: <strong>120</strong></p>
-  </div>
-</div>
+    <div class="dashboard-cards">
+      <div class="card">
+        <h3>Eventos</h3>
+        <p>Cadastrados: <strong>3</strong></p>
+      </div>
+      <div class="card">
+        <h3>Atividades</h3>
+        <p>Cadastradas: <strong>8</strong></p>
+      </div>
+      <div class="card">
+        <h3>Participantes</h3>
+        <p>Inscritos: <strong>120</strong></p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 - Portal de Eventos | Administração
+  </footer>
 
 </body>
 </html>
