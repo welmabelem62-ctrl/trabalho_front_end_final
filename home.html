@@ -4,13 +4,7 @@
   <meta charset="UTF-8">
   <title>Portal de Eventos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body { font-family: Arial; margin: 0; background: #f5f5f5; }
-    header { background: #1e88e5; color: #fff; padding: 20px; text-align: center; }
-    section { padding: 20px; margin: 10px; background: #fff; border-radius: 8px; }
-    h2 { margin-top: 0; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -22,44 +16,53 @@
   <main>
     <section>
       <h2 class="fundoVerde">Sobre o Portal</h2>
-      <p class="fundoVerde">Bem-Vindo ao portal de eventos! aqui você pode conferir os principias eventos academicos da nossa intituição, como palestras e cursos.
-        O porta foi criado para faciliatr a sua participação, permitido que você veja o detalhes de cada eventos.</p>
-   </section>
-
-    <section>
-      <h2>Eventos Disponíveis</h2>
-      <div class="fundoVerde">
-        <h3>Palestra sobre a segurança na internet</h3>
-        <p>Data: 20/03/2026 | Local: sala 01</p>
-        <p> Descrição: Palestra com dicas sobre como usar a internetde forma segurar </p>
-      </div>
-      <div>
-        <h3> Encontro do livro </h3>
-        <p>Data: 05/02/2026 | Local: Biblioteca da escola </p>
-         <p> Descrição: Discussão de livros escolhidos pelos participantes.</p>
-
-      </div
+      <p>Bem-vindo ao Portal de Eventos! Aqui você pode conferir os principais eventos acadêmicos da nossa instituição, como palestras e cursos. O portal foi criado para facilitar a sua participação, permitindo que você veja os detalhes de cada evento.</p>
     </section>
 
     <section>
+      <h2>Eventos Disponíveis</h2>
+      <div class="evento-item">
+        <h3>Palestra sobre a segurança na internet</h3>
+        <p><strong>Data:</strong> 20/03/2026 | <strong>Local:</strong> Sala 01</p>
+        <p><strong>Descrição:</strong> Palestra com dicas sobre como usar a internet de forma segura.</p>
+      </div>
+      <div class="evento-item">
+        <h3>Encontro do livro</h3>
+        <p><strong>Data:</strong> 05/02/2026 | <strong>Local:</strong> Biblioteca da escola</p>
+        <p><strong>Descrição:</strong> Discussão de livros escolhidos pelos participantes.</p>
+      </div>
+    </section>
+
+    <section id="carousel-section">
       <h2>Destaques</h2>
-      <p>O Parque Estadual do Cantão é utilizado como referência acadêmica para o  </p
-        p>desenvolvimento de cursos, oficinas e atividades formativas voltadas à área ambiental, turística e científica ./p>
-
-      <p>  Cursos de observação de aves na amazônia - aproveitanto a biodiversidade do  parque cantão.</p>
-       <p>  Curso de Educação Ambiental e Conservação – aprendendo sobre ecossistemas de várzea e preservação da fauna e flora..</p>
-
+      <!-- Carousel will be implemented here -->
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <p>O Parque Estadual do Cantão é utilizado como referência acadêmica para o desenvolvimento de cursos, oficinas e atividades formativas voltadas à área ambiental, turística e científica.</p>
+          </div>
+          <div class="carousel-item">
+            <p>Cursos de observação de aves na Amazônia - aproveitando a biodiversidade do Parque Cantão.</p>
+          </div>
+          <div class="carousel-item">
+            <p>Curso de Educação Ambiental e Conservação – aprendendo sobre ecossistemas de várzea e preservação da fauna e flora.</p>
+          </div>
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
     </section>
 
     <section>
       <h2>Acesso ao Sistema</h2>
-      <p><a href="login.html">Login</a></p>
+      <p><a href="login.html" class="btn">Login</a></p>
     </section>
   </main>
 
-  <footer style="text-align:center; padding:10px; background:#333; color:#fff;">
-    © 2026 - Portal de Eventos | Desenvolvido por<strong> Welma Carvalho Belem</strong>
+  <footer>
+    © 2026 - Portal de Eventos | Desenvolvido por <strong>Welma Carvalho Belem</strong>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>

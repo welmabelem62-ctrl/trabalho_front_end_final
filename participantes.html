@@ -1,39 +1,64 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Eventos</title>
+  <title>Relatório de Participantes - Portal de Eventos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Gerenciamento de Eventos</h1>
-</header>
+  <header>
+    <h1>Relatório de Participantes</h1>
+    <p>Administração do Portal</p>
+  </header>
 
-<div class="container">
-  <button class="btn-success">Novo Evento</button>
+  <main class="container">
+    <section>
+      <a href="dashbordAdministrativo.html" class="btn">Voltar ao Dashboard</a>
+      <h2>Participantes Inscritos</h2>
 
-  <table>
-    <tr>
-      <th>Nome</th>
-      <th>Data</th>
-      <th>Local</th>
-      <th>Situação</th>
-      <th>Ações</th>
-    </tr>
-    <tr>
-      <td>Tech Week 2026</td>
-      <td>20/03/2026</td>
-      <td>Palmas</td>
-      <td>Ativo</td>
-      <td>
-        <button class="btn-primary">Editar</button>
-        <button class="btn-danger">Excluir</button>
-      </td>
-    </tr>
-  </table>
-</div>
+      <div style="margin: 20px 0;">
+        <input type="text" placeholder="Filtrar por nome ou evento..." style="padding: 10px; width: 300px; border-radius: 4px; border: 1px solid #ddd;">
+        <button class="btn">Buscar</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Evento</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Carlos Eduardo</td>
+            <td>carlos@email.com</td>
+            <td>Tech Week 2026</td>
+            <td>Confirmado</td>
+          </tr>
+          <tr>
+            <td>Ana Beatriz</td>
+            <td>ana@email.com</td>
+            <td>Encontro Literário</td>
+            <td>Pendente</td>
+          </tr>
+          <tr>
+            <td>Lucas Pereira</td>
+            <td>lucas@email.com</td>
+            <td>Tech Week 2026</td>
+            <td>Confirmado</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 - Portal de Eventos | Administração
+  </footer>
 
 </body>
 </html>
