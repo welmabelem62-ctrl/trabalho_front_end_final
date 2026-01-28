@@ -1,39 +1,126 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Eventos</title>
+  <title>Relatório de Participantes - Portal de Eventos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Gerenciamento de Eventos</h1>
-</header>
+  <header>
+    <h1>Relatório de Participantes</h1>
+    <p>Administração do Portal</p>
+  </header>
 
-<div class="container">
-  <button class="btn-success">Novo Evento</button>
+  <main class="container">
+    <section>
+      <a href="dashbordAdministrativo.html" class="btn">Voltar ao Dashboard</a>
+      <h2>Participantes Inscritos</h2>
 
-  <table>
-    <tr>
-      <th>Nome</th>
-      <th>Data</th>
-      <th>Local</th>
-      <th>Situação</th>
-      <th>Ações</th>
-    </tr>
-    <tr>
-      <td>Tech Week 2026</td>
-      <td>20/03/2026</td>
-      <td>Palmas</td>
-      <td>Ativo</td>
-      <td>
-        <button class="btn-primary">Editar</button>
-        <button class="btn-danger">Excluir</button>
-      </td>
-    </tr>
-  </table>
-</div>
+      <div style="margin: 20px 0; display: flex; gap: 10px;">
+        <input type="text" id="filtroParticipante" placeholder="Filtrar por nome, e-mail ou evento..." style="padding: 10px; flex-grow: 1; border-radius: 4px; border: 1px solid #ddd;" onkeyup="filtrarTabela()">
+        <button class="btn" onclick="filtrarTabela()">Buscar</button>
+      </div>
 
+      <table id="tabelaParticipantes">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Evento</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Carlos Eduardo</td>
+            <td>carlos@email.com</td>
+            <td>Tech Week 2026</td>
+            <td><span style="color: green;">Confirmado</span></td>
+          </tr>
+          <tr>
+            <td>Ana Beatriz</td>
+            <td>ana@email.com</td>
+            <td>Encontro Literário</td>
+            <td><span style="color: orange;">Pendente</span></td>
+          </tr>
+          <tr>
+            <td>Lucas Pereira</td>
+            <td>lucas@email.com</td>
+            <td>Tech Week 2026</td>
+            <td><span style="color: green;">Confirmado</span></td>
+          </tr>
+          <tr>
+            <td>Juliana Souza</td>
+            <td>ju@email.com</td>
+            <td>Workshop React</td>
+            <td><span style="color: green;">Confirmado</span></td>
+          </tr>
+          <tr>
+            <td>Ricardo Mendes</td>
+            <td>ricardo@email.com</td>
+            <td>Palestra Segurança</td>
+            <td><span style="color: red;">Cancelado</span></td>
+          </tr>
+          <tr>
+            <td>Fernanda Lima</td>
+            <td>fer@email.com</td>
+            <td>Tech Week 2026</td>
+            <td><span style="color: green;">Confirmado</span></td>
+          </tr>
+          <tr>
+            <td>Gabriel Rocha</td>
+            <td>gabriel@email.com</td>
+            <td>Encontro Literário</td>
+            <td><span style="color: orange;">Pendente</span></td>
+          </tr>
+          <tr>
+            <td>Patrícia Gomes</td>
+            <td>paty@email.com</td>
+            <td>Congresso de Saúde</td>
+            <td><span style="color: green;">Confirmado</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p id="noResults" style="display:none; text-align:center; color: #666; margin-top: 20px;">Nenhum participante encontrado.</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 - Portal de Eventos | Administração
+  </footer>
+
+  <script>
+    function filtrarTabela() {
+      const input = document.getElementById("filtroParticipante");
+      const filter = input.value.toUpperCase();
+      const table = document.getElementById("tabelaParticipantes");
+      const tr = table.getElementsByTagName("tr");
+      let totalVisible = 0;
+
+      for (let i = 1; i < tr.length; i++) {
+        let visible = false;
+        let tds = tr[i].getElementsByTagName("td");
+        for(let j=0; j<tds.length; j++) {
+            if (tds[j]) {
+                let txtValue = tds[j].textContent || tds[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    visible = true;
+                    break;
+                }
+            }
+        }
+        if (visible) {
+            tr[i].style.display = "";
+            totalVisible++;
+        } else {
+            tr[i].style.display = "none";
+        }
+      }
+      document.getElementById("noResults").style.display = (totalVisible === 0 && filter !== "") ? "block" : "none";
+      input.style.borderColor = filter === "" ? "#ddd" : (totalVisible > 0 ? "#43a047" : "#e53935");
+    }
+  </script>
 </body>
 </html>

@@ -4,13 +4,7 @@
   <meta charset="UTF-8">
   <title>Portal de Eventos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <style>
-    body { font-family: Arial; margin: 0; background: #f5f5f5; }
-    header { background: #1e88e5; color: #fff; padding: 20px; text-align: center; }
-    section { padding: 20px; margin: 10px; background: #fff; border-radius: 8px; }
-    h2 { margin-top: 0; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -19,47 +13,100 @@
     <p>Divulgação de eventos acadêmicos</p>
   </header>
 
-  <main>
+  <main class="container">
     <section>
       <h2 class="fundoVerde">Sobre o Portal</h2>
-      <p class="fundoVerde">Bem-Vindo ao portal de eventos! aqui você pode conferir os principias eventos academicos da nossa intituição, como palestras e cursos.
-        O porta foi criado para faciliatr a sua participação, permitido que você veja o detalhes de cada eventos.</p>
-   </section>
-
-    <section>
-      <h2>Eventos Disponíveis</h2>
-      <div class="fundoVerde">
-        <h3>Palestra sobre a segurança na internet</h3>
-        <p>Data: 20/03/2026 | Local: sala 01</p>
-        <p> Descrição: Palestra com dicas sobre como usar a internetde forma segurar </p>
-      </div>
-      <div>
-        <h3> Encontro do livro </h3>
-        <p>Data: 05/02/2026 | Local: Biblioteca da escola </p>
-         <p> Descrição: Discussão de livros escolhidos pelos participantes.</p>
-
-      </div
+      <p>Bem-vindo ao Portal de Eventos! Aqui você pode conferir os principais eventos acadêmicos da nossa instituição, como palestras e cursos. O portal foi criado para facilitar a sua participação, permitindo que você veja os detalhes de cada evento.</p>
     </section>
 
-    <section>
+    <section id="eventos">
+      <h2>Eventos Disponíveis</h2>
+      <div class="eventos-grid">
+        <div class="evento-card" onclick="verDetalhes('Palestra sobre a segurança na internet', '20/03/2026', 'Sala 01', 'Palestra com dicas fundamentais sobre como proteger seus dados, evitar phishing e navegar de forma segura na web. Ideal para todos os estudantes.')">
+          <h3>Palestra sobre a segurança na internet</h3>
+          <p><strong>Data:</strong> 20/03/2026 | <strong>Local:</strong> Sala 01</p>
+          <button class="btn-sm">Ver Detalhes</button>
+        </div>
+        <div class="evento-card" onclick="verDetalhes('Encontro do livro', '05/02/2026', 'Biblioteca', 'Um espaço para compartilhar experiências de leitura. Trazer seu livro favorito para discussão em grupo.')">
+          <h3>Encontro do livro</h3>
+          <p><strong>Data:</strong> 05/02/2026 | <strong>Local:</strong> Biblioteca</p>
+          <button class="btn-sm">Ver Detalhes</button>
+        </div>
+        <div class="evento-card" onclick="verDetalhes('Workshop de React', '10/04/2026', 'Lab 05', 'Aprendizado prático de componentes, hooks e estado no ecossistema React. Requer conhecimento básico de JS.')">
+          <h3>Workshop de React</h3>
+          <p><strong>Data:</strong> 10/04/2026 | <strong>Local:</strong> Lab 05</p>
+          <button class="btn-sm">Ver Detalhes</button>
+        </div>
+        <div class="evento-card" onclick="verDetalhes('Semana de Tecnologia (Tech Week)', '15/05/2026', 'Auditório Central', 'O maior evento de tecnologia da região, com palestras de especialistas do mercado, hackathons e networking.')">
+          <h3>Tech Week 2026</h3>
+          <p><strong>Data:</strong> 15/05/2026 | <strong>Local:</strong> Auditório</p>
+          <button class="btn-sm">Ver Detalhes</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de Detalhes -->
+    <div id="modalDetalhes" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="fecharModal()">&times;</span>
+        <h2 id="modalTitulo"></h2>
+        <p><strong>Data:</strong> <span id="modalData"></span></p>
+        <p><strong>Local:</strong> <span id="modalLocal"></span></p>
+        <hr>
+        <p id="modalDescricao"></p>
+        <button class="btn btn-success" onclick="alert('Inscrição realizada com sucesso!')">Inscrever-se</button>
+      </div>
+    </div>
+
+    <section id="carousel-section">
       <h2>Destaques</h2>
-      <p>O Parque Estadual do Cantão é utilizado como referência acadêmica para o  </p
-        p>desenvolvimento de cursos, oficinas e atividades formativas voltadas à área ambiental, turística e científica ./p>
-
-      <p>  Cursos de observação de aves na amazônia - aproveitanto a biodiversidade do  parque cantão.</p>
-       <p>  Curso de Educação Ambiental e Conservação – aprendendo sobre ecossistemas de várzea e preservação da fauna e flora..</p>
-
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <p><strong>Parque Estadual do Cantão:</strong> Referência acadêmica para o desenvolvimento de cursos, oficinas e atividades formativas voltadas à área ambiental.</p>
+          </div>
+          <div class="carousel-item">
+            <p><strong>Observação de Aves:</strong> Cursos práticos aproveitando a biodiversidade da região amazônica no Parque Cantão.</p>
+          </div>
+          <div class="carousel-item">
+            <p><strong>Educação Ambiental:</strong> Aprendizado sobre ecossistemas de várzea e preservação da fauna e flora local.</p>
+          </div>
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
     </section>
 
     <section>
       <h2>Acesso ao Sistema</h2>
-      <p><a href="login.html">Login</a></p>
+      <p><a href="login.html" class="btn">Login Administrativo</a></p>
     </section>
   </main>
 
-  <footer style="text-align:center; padding:10px; background:#333; color:#fff;">
-    © 2026 - Portal de Eventos | Desenvolvido por<strong> Welma Carvalho Belem</strong>
+  <footer>
+    © 2026 - Portal de Eventos | Desenvolvido por <strong>Welma Carvalho Belem</strong>
   </footer>
 
+  <script src="script.js"></script>
+  <script>
+    function verDetalhes(titulo, data, local, descricao) {
+      document.getElementById('modalTitulo').innerText = titulo;
+      document.getElementById('modalData').innerText = data;
+      document.getElementById('modalLocal').innerText = local;
+      document.getElementById('modalDescricao').innerText = descricao;
+      document.getElementById('modalDetalhes').style.display = "block";
+    }
+
+    function fecharModal() {
+      document.getElementById('modalDetalhes').style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      let modal = document.getElementById('modalDetalhes');
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>

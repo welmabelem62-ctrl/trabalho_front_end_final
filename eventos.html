@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerenciar Eventos - Portal de Eventos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Gerenciamento de Eventos</h1>
+    <p>Administração do Portal</p>
+  </header>
+
+  <main class="container">
+    <section>
+      <a href="dashbordAdministrativo.html" class="btn">Voltar ao Dashboard</a>
+      <h2>Listagem de Eventos</h2>
+
+      <div style="margin: 20px 0; display: flex; gap: 10px; align-items: center;">
+        <input type="text" id="filtroEvento" placeholder="Buscar evento por nome..." style="padding: 10px; flex-grow: 1; border: 1px solid #ddd; border-radius: 4px;" onkeyup="filtrarTabela()">
+        <button class="btn btn-success" onclick="toggleForm()">+ Novo Evento</button>
+      </div>
+
+      <p id="msgFeedback" style="display:none; padding: 10px; border-radius: 4px; text-align: center; margin-bottom: 10px; font-weight: bold;"></p>
+
+      <div id="form-evento" style="display:none; margin-top: 20px; border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fafafa;">
+        <h3 id="formTitulo">Cadastrar Evento</h3>
+        <input type="text" id="eventNome" placeholder="Nome do Evento" style="width:100%; padding:10px; margin-bottom:10px;">
+        <input type="date" id="eventData" style="width:100%; padding:10px; margin-bottom:10px;">
+        <input type="text" id="eventLocal" placeholder="Local" style="width:100%; padding:10px; margin-bottom:10px;">
+        <button class="btn btn-success" onclick="salvarEvento()">Salvar</button>
+        <button class="btn" onclick="toggleForm()">Cancelar</button>
+      </div>
+
+      <table id="tabelaEventos">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Data</th>
+            <th>Local</th>
+            <th>Situação</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tech Week 2026</td>
+            <td>15/05/2026</td>
+            <td>Auditório Central</td>
+            <td>Ativo</td>
+            <td>
+              <button class="btn-sm" onclick="editarEvento(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirEvento(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Encontro Literário</td>
+            <td>05/02/2026</td>
+            <td>Biblioteca</td>
+            <td>Ativo</td>
+            <td>
+              <button class="btn-sm" onclick="editarEvento(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirEvento(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Palestra Segurança Digital</td>
+            <td>20/03/2026</td>
+            <td>Sala 01</td>
+            <td>Ativo</td>
+            <td>
+              <button class="btn-sm" onclick="editarEvento(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirEvento(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Workshop React</td>
+            <td>10/04/2026</td>
+            <td>Lab 05</td>
+            <td>Ativo</td>
+            <td>
+              <button class="btn-sm" onclick="editarEvento(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirEvento(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Congresso de Saúde</td>
+            <td>12/06/2026</td>
+            <td>Palmas</td>
+            <td>Pendente</td>
+            <td>
+              <button class="btn-sm" onclick="editarEvento(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirEvento(this)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p id="noResults" style="display:none; text-align:center; color: #666; margin-top: 20px;">Nenhum evento encontrado.</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 - Portal de Eventos | Administração
+  </footer>
+
+  <script>
+    function toggleForm() {
+      const form = document.getElementById('form-evento');
+      document.getElementById('formTitulo').innerText = "Cadastrar Evento";
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function mostrarFeedback(mensagem, tipo) {
+      const fb = document.getElementById('msgFeedback');
+      fb.innerText = mensagem;
+      fb.className = "";
+      fb.style.display = "block";
+      fb.style.backgroundColor = tipo === 'success' ? '#d4edda' : '#f8d7da';
+      fb.style.color = tipo === 'success' ? '#155724' : '#721c24';
+      fb.style.border = "1px solid " + (tipo === 'success' ? '#c3e6cb' : '#f5c6cb');
+
+      setTimeout(() => {
+        fb.style.display = "none";
+      }, 3000);
+    }
+
+    function salvarEvento() {
+      const nome = document.getElementById('eventNome').value;
+      if (!nome) {
+        mostrarFeedback("Por favor, preencha pelo menos o nome.", "error");
+        return;
+      }
+      mostrarFeedback("Evento salvo com sucesso! (Simulação)", "success");
+      document.getElementById('form-evento').style.display = 'none';
+      document.getElementById('eventNome').value = "";
+      document.getElementById('eventData').value = "";
+      document.getElementById('eventLocal').value = "";
+    }
+
+    function excluirEvento(btn) {
+      if (confirm("Tem certeza que deseja excluir este evento?")) {
+        const row = btn.parentNode.parentNode;
+        row.style.opacity = "0.5";
+        setTimeout(() => {
+          row.style.display = "none";
+          mostrarFeedback("Evento excluído com sucesso!", "success");
+        }, 500);
+      }
+    }
+
+    function editarEvento(btn) {
+      toggleForm();
+      document.getElementById('formTitulo').innerText = "Editar Evento";
+      const row = btn.parentNode.parentNode;
+      document.getElementById('eventNome').value = row.cells[0].innerText;
+      document.getElementById('eventLocal').value = row.cells[2].innerText;
+    }
+
+    function filtrarTabela() {
+      const input = document.getElementById("filtroEvento");
+      const filter = input.value.toUpperCase();
+      const table = document.getElementById("tabelaEventos");
+      const tr = table.getElementsByTagName("tr");
+      let totalVisible = 0;
+
+      for (let i = 1; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          let txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+            totalVisible++;
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+
+      const noResults = document.getElementById("noResults");
+      if (totalVisible === 0 && filter !== "") {
+        noResults.style.display = "block";
+      } else {
+        noResults.style.display = "none";
+      }
+
+      // Visual feedback on search box
+      input.style.borderColor = filter === "" ? "#ddd" : (totalVisible > 0 ? "#43a047" : "#e53935");
+    }
+  </script>
+</body>
+</html>

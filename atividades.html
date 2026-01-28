@@ -1,39 +1,181 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Eventos</title>
+  <title>Gerenciar Atividades - Portal de Eventos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header>
-  <h1>Gerenciamento de Eventos</h1>
-</header>
+  <header>
+    <h1>Gerenciamento de Atividades</h1>
+    <p>Administração do Portal</p>
+  </header>
 
-<div class="container">
-  <button class="btn-success">Novo Evento</button>
+  <main class="container">
+    <section>
+      <a href="dashbordAdministrativo.html" class="btn">Voltar ao Dashboard</a>
+      <h2>Listagem de Atividades</h2>
 
-  <table>
-    <tr>
-      <th>Nome</th>
-      <th>Data</th>
-      <th>Local</th>
-      <th>Situação</th>
-      <th>Ações</th>
-    </tr>
-    <tr>
-      <td>Tech Week 2026</td>
-      <td>20/03/2026</td>
-      <td>Palmas</td>
-      <td>Ativo</td>
-      <td>
-        <button class="btn-primary">Editar</button>
-        <button class="btn-danger">Excluir</button>
-      </td>
-    </tr>
-  </table>
-</div>
+      <div style="margin: 20px 0; display: flex; gap: 10px; align-items: center;">
+        <input type="text" id="filtroAtividade" placeholder="Buscar atividade..." style="padding: 10px; flex-grow: 1; border: 1px solid #ddd; border-radius: 4px;" onkeyup="filtrarTabela()">
+        <button class="btn btn-success" onclick="toggleForm()">+ Nova Atividade</button>
+      </div>
 
+      <p id="msgFeedback" style="display:none; padding: 10px; border-radius: 4px; text-align: center; margin-bottom: 10px; font-weight: bold;"></p>
+
+      <div id="form-atividade" style="display:none; margin-top: 20px; border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fafafa;">
+        <h3 id="formTitulo">Cadastrar Atividade</h3>
+        <input type="text" id="atNome" placeholder="Nome da Atividade" style="width:100%; padding:10px; margin-bottom:10px;">
+        <select id="atEvento" style="width:100%; padding:10px; margin-bottom:10px;">
+          <option value="">Selecione o Evento</option>
+          <option>Tech Week 2026</option>
+          <option>Encontro Literário</option>
+          <option>Workshop React</option>
+        </select>
+        <input type="text" id="atResp" placeholder="Palestrante/Responsável" style="width:100%; padding:10px; margin-bottom:10px;">
+        <button class="btn btn-success" onclick="salvarAtividade()">Salvar</button>
+        <button class="btn" onclick="toggleForm()">Cancelar</button>
+      </div>
+
+      <table id="tabelaAtividades">
+        <thead>
+          <tr>
+            <th>Atividade</th>
+            <th>Evento</th>
+            <th>Responsável</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Workshop de React Native</td>
+            <td>Tech Week 2026</td>
+            <td>João Silva</td>
+            <td>
+              <button class="btn-sm" onclick="editarAtividade(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirAtividade(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>IA Generativa no Dia a Dia</td>
+            <td>Tech Week 2026</td>
+            <td>Maria Oliveira</td>
+            <td>
+              <button class="btn-sm" onclick="editarAtividade(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirAtividade(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Roda de Conversa: Clássicos</td>
+            <td>Encontro Literário</td>
+            <td>Prof. Marcos</td>
+            <td>
+              <button class="btn-sm" onclick="editarAtividade(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirAtividade(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Introdução ao Figma</td>
+            <td>Workshop React</td>
+            <td>Alice Santos</td>
+            <td>
+              <button class="btn-sm" onclick="editarAtividade(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirAtividade(this)">Excluir</button>
+            </td>
+          </tr>
+          <tr>
+            <td>Segurança em Nuvem</td>
+            <td>Tech Week 2026</td>
+            <td>Roberto Costa</td>
+            <td>
+              <button class="btn-sm" onclick="editarAtividade(this)">Editar</button>
+              <button class="btn-sm btn-danger" onclick="excluirAtividade(this)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p id="noResults" style="display:none; text-align:center; color: #666; margin-top: 20px;">Nenhuma atividade encontrada.</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 - Portal de Eventos | Administração
+  </footer>
+
+  <script>
+    function toggleForm() {
+      const form = document.getElementById('form-atividade');
+      document.getElementById('formTitulo').innerText = "Cadastrar Atividade";
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function mostrarFeedback(mensagem, tipo) {
+      const fb = document.getElementById('msgFeedback');
+      fb.innerText = mensagem;
+      fb.style.display = "block";
+      fb.style.backgroundColor = tipo === 'success' ? '#d4edda' : '#f8d7da';
+      fb.style.color = tipo === 'success' ? '#155724' : '#721c24';
+
+      setTimeout(() => {
+        fb.style.display = "none";
+      }, 3000);
+    }
+
+    function salvarAtividade() {
+      const nome = document.getElementById('atNome').value;
+      if (!nome) {
+        mostrarFeedback("Por favor, preencha o nome da atividade.", "error");
+        return;
+      }
+      mostrarFeedback("Atividade salva com sucesso!", "success");
+      document.getElementById('form-atividade').style.display = 'none';
+      document.getElementById('atNome').value = "";
+      document.getElementById('atResp').value = "";
+    }
+
+    function excluirAtividade(btn) {
+      if (confirm("Deseja excluir esta atividade?")) {
+        const row = btn.parentNode.parentNode;
+        row.style.opacity = "0.5";
+        setTimeout(() => {
+          row.style.display = "none";
+          mostrarFeedback("Atividade excluída.", "success");
+        }, 500);
+      }
+    }
+
+    function editarAtividade(btn) {
+      toggleForm();
+      document.getElementById('formTitulo').innerText = "Editar Atividade";
+      const row = btn.parentNode.parentNode;
+      document.getElementById('atNome').value = row.cells[0].innerText;
+      document.getElementById('atResp').value = row.cells[2].innerText;
+    }
+
+    function filtrarTabela() {
+      const input = document.getElementById("filtroAtividade");
+      const filter = input.value.toUpperCase();
+      const table = document.getElementById("tabelaAtividades");
+      const tr = table.getElementsByTagName("tr");
+      let totalVisible = 0;
+
+      for (let i = 1; i < tr.length; i++) {
+        let td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          let txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+            totalVisible++;
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+      document.getElementById("noResults").style.display = (totalVisible === 0 && filter !== "") ? "block" : "none";
+      input.style.borderColor = filter === "" ? "#ddd" : (totalVisible > 0 ? "#43a047" : "#e53935");
+    }
+  </script>
 </body>
 </html>
