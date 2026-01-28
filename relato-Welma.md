@@ -8,6 +8,7 @@ Durante o desenvolvimento da Etapa 3 do projeto, as principais dificuldades enfr
 2. **Implementação do Carrossel:** Criar um carrossel de destaques utilizando apenas JavaScript puro e CSS, garantindo uma transição suave entre os itens.
 3. **Padronização Visual:** Unificar o design de todas as páginas (Login, Dashboard, Gerenciamento) através de um único arquivo de estilos (`style.css`), garantindo consistência visual e facilidade de manutenção.
 4. **Navegação:** Ajustar os links internos e renomear arquivos para garantir que a navegação entre o portal público e a área administrativa funcionasse sem erros.
+5. **Feedback Interativo:** Implementar lógica de busca que fornece feedback visual imediato (mudança de cor das bordas) conforme o usuário digita, o que exigiu um cuidado extra na manipulação do DOM.
 
 ## Tecnologias Utilizadas
 

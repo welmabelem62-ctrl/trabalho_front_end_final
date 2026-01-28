@@ -162,15 +162,22 @@
       let totalVisible = 0;
 
       for (let i = 1; i < tr.length; i++) {
-        let td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-          let txtValue = td.textContent || td.innerText;
-          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        let visible = false;
+        let tds = tr[i].getElementsByTagName("td");
+        for(let j=0; j < tds.length - 1; j++) {
+            if (tds[j]) {
+                let txtValue = tds[j].textContent || tds[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    visible = true;
+                    break;
+                }
+            }
+        }
+        if (visible) {
             tr[i].style.display = "";
             totalVisible++;
-          } else {
+        } else {
             tr[i].style.display = "none";
-          }
         }
       }
       document.getElementById("noResults").style.display = (totalVisible === 0 && filter !== "") ? "block" : "none";
